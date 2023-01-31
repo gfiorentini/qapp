@@ -1,0 +1,12 @@
+.correct-reply {
+  background-color:lightgreen;
+}
+
+.wrong-reply {
+  background-color: orangered;
+}
+
+.num-question {
+  font-size: medium;
+  font-weight: bold;
+}

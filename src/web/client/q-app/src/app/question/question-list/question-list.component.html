@@ -1,0 +1,4 @@
+<h2>Elenco domande</h2>
+<div class="accordion" id="accordionExample" *ngFor="let question of questions; let i = index;">
+    <app-question-item [q]=question [id]=i></app-question-item>
+</div>
