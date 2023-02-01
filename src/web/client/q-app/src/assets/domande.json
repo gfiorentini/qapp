@@ -1,0 +1,86 @@
+[
+  {
+    "Risposte": [
+      {
+        "Corretta": true,
+        "Text": " alle quali ogni operatore economico può chiedere di partecipare ed in cui possono presentare un'offerta soltanto gli  operatori economici invitati dalle stazioni appaltanti"
+      },
+      {
+        "Corretta": false,
+        "Text": " in cui ogni operatore economico può presentare solo un'offerta"
+      },
+      {
+        "Corretta": false,
+        "Text": " in cui le stazioni appaltanti consultano gli operatori economici da loro scelti e negoziano con uno o più di essi le  condizioni dell'appalto"
+      },
+      {
+        "Corretta": false,
+        "Text": " alle quali possono chiedere di partecipare soltanto gli operatori economici invitati dalle stazioni appaltanti"
+      }
+    ],
+    "TestoDomanda": "Ai sensi dell'art. 3 del D.lgs. 50/16 e ss.mm.ii., \"per procedure ristrette\" si intendono le procedure di  affidamento:"
+  },
+  {
+    "Risposte": [
+      {
+        "Corretta": true,
+        "Text": " provvede alla denuncia dei fatti alla Procura Regionale presso la Corte dei conti ed alla relativa segnalazione al Ministero  dell'interno tramite le prefetture"
+      },
+      {
+        "Corretta": false,
+        "Text": " provvede alla denuncia dei fatti alla Procura della Repubblica ed alla relativa segnalazione al Ministero dell'interno  tramite le prefetture"
+      },
+      {
+        "Corretta": false,
+        "Text": " provvede alla denuncia dei fatti alla Procura della Repubblica ed alla relativa segnalazione al Ministero della giustizia  tramite le prefetture"
+      },
+      {
+        "Corretta": false,
+        "Text": " provvede alla denuncia dei fatti alla Procura Regionale presso la Corte dei conti ed alla relativa segnalazione al Ministero  dell'economia, della finanza e del bilancio tramite le prefetture"
+      }
+    ],
+    "TestoDomanda": "Ai sensi del comma 5 dell'art. 252 del D.lgs. 267/00 e ss.mm.ii, l'organo straordinario di liquidazione in  ogni caso di accertamento di danni cagionati all'ente locale o all'erario:"
+  },
+  {
+    "Risposte": [
+      {
+        "Corretta": true,
+        "Text": " entro trenta giorni dalla conclusione di un contratto o di un accordo quadro che faccia seguito alla relativa decisione di  aggiudicazione o di conclusione"
+      },
+      {
+        "Corretta": false,
+        "Text": " entro venti giorni dalla conclusione di un contratto o di un accordo quadro che faccia seguito alla relativa decisione di  aggiudicazione o di conclusione"
+      },
+      {
+        "Corretta": false,
+        "Text": " entro trentacinque giorni dalla conclusione di un contratto o di un accordo quadro che faccia seguito alla relativa  decisione di aggiudicazione o di conclusione"
+      },
+      {
+        "Corretta": false,
+        "Text": " entro venticinque giorni dalla conclusione di un contratto o di un accordo quadro che faccia seguito alla relativa  decisione di aggiudicazione o di conclusione"
+      }
+    ],
+    "TestoDomanda": "Ai sensi del D.lgs. 50/2016 e ss.mm.ii., art. 129 comma 2 in materia di bandi di gara e avvisi relativi agli  appalti aggiudicati, gli enti aggiudicatori inviano un avviso di aggiudicazione che riporta i risultati della  procedura di appalto:"
+  },
+  {
+    "Risposte": [
+      {
+        "Corretta": true,
+        "Text": " può essere un dipendente del titolare del trattamento"
+      },
+      {
+        "Corretta": false,
+        "Text": " non può essere un dipendente del responsabile del trattamento"
+      },
+      {
+        "Corretta": false,
+        "Text": " deve obbligatoriamente assolvere i suoi compiti in base a un contratto di servizi"
+      },
+      {
+        "Corretta": false,
+        "Text": " non può  assolvere i suoi compiti in base a un contratto di servizi "
+      }
+    ],
+    "TestoDomanda": "Il responsabile della protezione dei dati:"
+  }
+]
