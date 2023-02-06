@@ -2,3 +2,4 @@
 <div class="accordion" id="accordionExample" *ngFor="let question of questions; let i = index;">
     <app-question-item [q]=question [id]=i></app-question-item>
 </div>
+<div><button id="btnInvia" (click)="onClickInvia()" >Invia</button></div>

@@ -33,6 +33,10 @@ export class QuestionListComponent implements OnInit {
         );
     }
 
+    onClickInvia(){
+      console.log("invia dati...");
+    }
+
     shuffle(array: Risposta[]): Risposta[] {
       let currentIndex = array.length,  randomIndex;
 

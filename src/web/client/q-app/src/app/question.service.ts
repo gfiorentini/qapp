@@ -15,6 +15,12 @@ export class QuestionService {
 
   public getQuestions(): Observable<QuestionItems> {
     // return this.http.get<Question[]>("./assets/domande.json");
-    return this.http.get<Question[]>('http://10.6.5.195:3000/sampleDomande');
+    // return this.http.get<Question[]>('http://10.6.5.195:3000/sampleDomande');
+    return this.http.get<Question[]>("http://localhost:3000/sampleDomande");
   }
+
+  public register( question:Question, rispostaCorretta: boolean ) {
+    console.log(` registrato domanda ${question.id} corretta: ${rispostaCorretta}` );
+  }
+
 }
