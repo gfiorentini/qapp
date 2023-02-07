@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from 'src/app/question.service';
-import {QuestionItems, Risposta }  from '../../model/question'
+import {QuestionItems, Risposta, Question }  from '../../model/question'
 
 
 @Component({
@@ -12,7 +12,11 @@ export class QuestionListComponent implements OnInit {
 
     questions : QuestionItems = [];
 
-    constructor(private service: QuestionService) { }
+
+
+    constructor(private service: QuestionService) {
+
+    }
 
     ngOnInit() {
 
@@ -26,6 +30,10 @@ export class QuestionListComponent implements OnInit {
           // mischia/shuffle le risposte.
           for (let i of qlist ) {
             i.Risposte = this.shuffle ( i.Risposte );
+          }
+
+          for (let q of qlist ) {
+            this.service.initQuestion ( q );
           }
 
           this.questions = qlist;
