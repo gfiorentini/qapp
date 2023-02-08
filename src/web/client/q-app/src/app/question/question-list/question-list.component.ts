@@ -42,7 +42,8 @@ export class QuestionListComponent implements OnInit {
     }
 
     onClickInvia(){
-      console.log("invia dati...");
+      var a = this.service.getRisposteDate();
+      console.log(a);
     }
 
     shuffle(array: Risposta[]): Risposta[] {

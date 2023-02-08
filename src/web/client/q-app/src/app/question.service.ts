@@ -11,16 +11,27 @@ export class QuestionService {
     /*     this.getJSON().subscribe(data => {
         console.log(data);
     }); */
-    this.map = new Map<number,Question>();
+    // this.map = new Map<number,Question>();
+    this.map_result = new Map<number, boolean >();
   }
 
-  map:  Map<number, Question>;
+  // map:  Map<number, Question>;
+
+  // indica se si è risposto correttamente o meno alla domanda con id-indicato
+  map_result : Map<number, boolean>;
 
   public initQuestion ( q: Question ) {
-    this.map.set( q.id, q );
+    // this.map.set( q.id, q );
+  }
+
+  public getRisposteDate () {
+    return this.map_result;
   }
 
   public getQuestions(): Observable<QuestionItems> {
+    //
+    this.map_result.clear();
+    //
     // return this.http.get<Question[]>("./assets/domande.json");
     // return this.http.get<Question[]>('http://10.6.5.195:3000/sampleDomande');
     //
@@ -39,22 +50,24 @@ export class QuestionService {
 
   public register( question:Question, rispostaCorretta: boolean ) {
     console.log(` registrato domanda ${question.id} corretta: ${rispostaCorretta}` );
-    if (rispostaCorretta) {
-      let q1 : Question | undefined = this.map.get( question.id);
-      if (q1 === undefined) {
+    // if (rispostaCorretta) {
+    //   let q1 : Question | undefined = this.map.get( question.id);
+    //   if (q1 === undefined) {
+    //
+    //   } else {
+    //     q1.profile.ok = q1.profile.ok + 1;
+    //   }
+    // } else {
+    //   let q2 : Question | undefined = this.map.get( question.id);
+    //   if (q2 === undefined) {
 
-      } else {
-        q1.profile.ok = q1.profile.ok + 1;
-      }
-    } else {
-      let q2 : Question | undefined = this.map.get( question.id);
-      if (q2 === undefined) {
-
-      } else {
-        q2.profile.nok = q2.profile.nok + 1;
-      }
-
-    }
+    //   } else {
+    //     q2.profile.nok = q2.profile.nok + 1;
+    //   }
+    //
+    // }
+    //
+    this.map_result.set( question.id, rispostaCorretta );
     //
     console.log( question );
 
