@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { Question, QuestionItems } from './model/question';
 
 @Injectable({
@@ -26,6 +28,37 @@ export class QuestionService {
 
   public getRisposteDate () {
     return this.map_result;
+  }
+
+  public sendDataReport () {
+
+    //console.log(JSON.stringify([...this.map_result]));
+    // 'http://10.6.5.195:3000/sampleDomande
+    // return this.http.post("http://localhost:3000/sendDataReport", [...this.map_result], this.httpOptions)
+    return this.http.post("/api/sendDataReport", [...this.map_result], this.httpOptions)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
   public getQuestions(): Observable<QuestionItems> {
