@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -61,15 +61,20 @@ export class QuestionService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  public getQuestions(): Observable<QuestionItems> {
+  public getQuestions(parNonRisp : boolean = true, parSbagliate : boolean = true  , parCorrette : boolean = true ): Observable<QuestionItems> {
     //
     this.map_result.clear();
+
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("parNonRisp",parNonRisp);
+    queryParams = queryParams.append("parSbagliate",parSbagliate);
+    queryParams = queryParams.append("parCorrette", parCorrette);
     //
     // return this.http.get<Question[]>("./assets/domande.json");
     // return this.http.get<Question[]>('http://10.6.5.195:3000/sampleDomande');
     //
     // see src/proxy.conf.json -->  https://angular.io/guide/build#rewrite-the-url-path
-    let retArr : Observable<QuestionItems> = this.http.get<Question[]>("/api/sampleDomande");
+    let retArr : Observable<QuestionItems> = this.http.get<Question[]>("/api/sampleDomande" , { params: queryParams  });
     // retArr.subscribe(
     //   (qlist) => {
     //     this.map.clear();

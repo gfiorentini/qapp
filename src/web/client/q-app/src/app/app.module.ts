@@ -11,6 +11,7 @@ import { NavbarComponent } from './common/navbar/navbar.component';
 import { QuestionItemComponent } from './question/question-item/question-item.component';
 import { QuestionListComponent } from './question/question-list/question-list.component';
 import { QuestionService } from './question.service';
+import { QuestionQueryComponent } from './question-query/question-query.component';
 
 
 
@@ -19,7 +20,8 @@ import { QuestionService } from './question.service';
     AppComponent,
     NavbarComponent,
     QuestionItemComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuestionQueryComponent
   ],
   imports: [
     BrowserModule,

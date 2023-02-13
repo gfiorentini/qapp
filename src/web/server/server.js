@@ -23,6 +23,8 @@ app.get("/listDomande", function (req, res) {
 });
 
 app.get("/sampleDomande", function (req, res) {
+  console.log ( req.query);
+  //
   fs.readFile(__dirname + "/" + "domande.json", "utf8", function (err, data) {
     // console.log(data);
     //
@@ -98,7 +100,7 @@ app.post("/sendDataReport", function (req, res) {
   var jsonContent = JSON.stringify(arr);
   fs.writeFileSync(__dirname + "/" + "domande.json", jsonContent, 'utf8');
   console.log("JSON file has been saved.");
-  
+  return res.json({ret: 'OK'});
 });
 
 var server = app.listen(PORT, function () {
