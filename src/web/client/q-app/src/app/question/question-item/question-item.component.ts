@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Question, Risposta, RispostaItems } from '../../../app/model/question';
+import { QuestionService } from 'src/app/question.service';
+import { Question, Risposta, RispostaItems, Profile } from '../../../app/model/question';
 
 
 @Component({
@@ -10,10 +11,9 @@ import { Question, Risposta, RispostaItems } from '../../../app/model/question';
 export class QuestionItemComponent implements OnInit {
 
   @Input()
-  q: Question = {
-    TestoDomanda: 'empty',
-    Risposte: []
-  };
+  q: Question|any= {};
+
+  constructor ( private service:QuestionService   ) {}
 
   @Input()
     id: number = 0;
@@ -29,6 +29,7 @@ export class QuestionItemComponent implements OnInit {
   handleChange (r : Risposta) {
     console.log('click;', r);
     this.rSelected = r;
+    this.service.register ( this.q, r.Corretta );
   }
 
 }

@@ -8,8 +8,8 @@
       aria-expanded="true"
       aria-controls="collapseOne"
     >
-      <span class="num-question"> {{ id + 1 }})</span>&nbsp;
-      {{ q.TestoDomanda }}
+      <span class="num-question"> {{ q.id }})</span>&nbsp;
+      {{ q.TestoDomanda }}  <div *ngIf="q.profile.nok>0"><span class="fa fa-warning fa-solid fa-2x"> </span></div>
     </button>
   </h2>
   <div
