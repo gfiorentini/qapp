@@ -9,7 +9,21 @@
       aria-controls="collapseOne"
     >
       <span class="num-question"> {{ q.id }})</span>&nbsp;
-      {{ q.TestoDomanda }}  <div *ngIf="q.profile.nok>0"><span class="fa fa-warning fa-solid fa-2x"> </span></div>
+      {{ q.TestoDomanda }}
+      <div
+        *ngIf="q.profile.nok > 0"
+        title="sbagliato {{ q.profile.nok }} volta/e"
+      >
+        <span class="fa fa-warning fa-solid fa-2x" style="color: orangered">
+        </span>
+      </div>
+      <div
+        *ngIf="q.profile.ok > 0"
+        title="risposto correttamente {{ q.profile.nok }} volta/e"
+      >
+        <span class="fa fa-check fa-solid fa-2x" style="color: lightgreen">
+        </span>
+      </div>
     </button>
   </h2>
   <div

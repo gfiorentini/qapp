@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import { Observable, Subject, tap } from 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Question, QuestionItems } from './model/question';
@@ -14,37 +19,36 @@ export class QuestionService {
         console.log(data);
     }); */
     // this.map = new Map<number,Question>();
-    this.map_result = new Map<number, boolean >();
+    this.map_result = new Map<number, boolean>();
+    this.domandeArray = undefined;
   }
 
   // map:  Map<number, Question>;
 
   // indica se si è risposto correttamente o meno alla domanda con id-indicato
-  map_result : Map<number, boolean>;
+  map_result: Map<number, boolean>;
 
-  public initQuestion ( q: Question ) {
+  public initQuestion(q: Question) {
     // this.map.set( q.id, q );
   }
 
-  public getRisposteDate () {
+  public getRisposteDate() {
     return this.map_result;
   }
 
-  public sendDataReport () {
-
+  public sendDataReport() {
     //console.log(JSON.stringify([...this.map_result]));
     // 'http://10.6.5.195:3000/sampleDomande
     // return this.http.post("http://localhost:3000/sendDataReport", [...this.map_result], this.httpOptions)
-    return this.http.post("/api/sendDataReport", [...this.map_result], this.httpOptions)
-    .pipe(
-      catchError(this.handleError)
-    );
+    return this.http
+      .post('/api/sendDataReport', [...this.map_result], this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    })
+      'Content-Type': 'application/json',
+    }),
   };
 
   private handleError(error: HttpErrorResponse) {
@@ -55,26 +59,44 @@ export class QuestionService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
+        `Backend returned code ${error.status}, body was: `,
+        error.error
+      );
     }
     // Return an observable with a user-facing error message.
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(
+      () => new Error('Something bad happened; please try again later.')
+    );
   }
 
-  public getQuestions(parNonRisp : boolean = true, parSbagliate : boolean = true  , parCorrette : boolean = true ): Observable<QuestionItems> {
+  private domandeAggiornate = new Subject<QuestionItems>();
+
+  domandeArray: QuestionItems | undefined;
+
+  /** attach listender */
+  getDomandeAggiornateListener() {
+    return this.domandeAggiornate.asObservable();
+  }
+
+  public requestNewQuestions(
+    parNonRisp: boolean = true,
+    parSbagliate: boolean = true,
+    parCorrette: boolean = true
+  ) {
+    // : Observable<QuestionItems> {
     //
     this.map_result.clear();
 
     let queryParams = new HttpParams();
-    queryParams = queryParams.append("parNonRisp",parNonRisp);
-    queryParams = queryParams.append("parSbagliate",parSbagliate);
-    queryParams = queryParams.append("parCorrette", parCorrette);
+    queryParams = queryParams.append('parNonRisp', parNonRisp);
+    queryParams = queryParams.append('parSbagliate', parSbagliate);
+    queryParams = queryParams.append('parCorrette', parCorrette);
     //
     // return this.http.get<Question[]>("./assets/domande.json");
     // return this.http.get<Question[]>('http://10.6.5.195:3000/sampleDomande');
     //
     // see src/proxy.conf.json -->  https://angular.io/guide/build#rewrite-the-url-path
-    let retArr : Observable<QuestionItems> = this.http.get<Question[]>("/api/sampleDomande" , { params: queryParams  });
+    // **let retArr : Observable<QuestionItems> = this.http.get<Question[]>("/api/sampleDomande" , { params: queryParams  });
     // retArr.subscribe(
     //   (qlist) => {
     //     this.map.clear();
@@ -83,11 +105,22 @@ export class QuestionService {
     //       this.map.set( i.id, i );
     //     }
     //   });
-    return retArr;
+    // **return retArr;
+    let retArr: Observable<QuestionItems> = this.http.get<Question[]>(
+      '/api/sampleDomande',
+      { params: queryParams }
+    );
+    retArr.subscribe((qlist) => {
+      this.domandeArray = qlist;
+      //
+      this.domandeAggiornate.next(qlist);
+    });
   }
 
-  public register( question:Question, rispostaCorretta: boolean ) {
-    console.log(` registrato domanda ${question.id} corretta: ${rispostaCorretta}` );
+  public register(question: Question, rispostaCorretta: boolean) {
+    console.log(
+      ` registrato domanda ${question.id} corretta: ${rispostaCorretta}`
+    );
     // if (rispostaCorretta) {
     //   let q1 : Question | undefined = this.map.get( question.id);
     //   if (q1 === undefined) {
@@ -105,11 +138,8 @@ export class QuestionService {
     //
     // }
     //
-    this.map_result.set( question.id, rispostaCorretta );
+    this.map_result.set(question.id, rispostaCorretta);
     //
-    console.log( question );
-
-
+    console.log(question);
   }
-
 }
