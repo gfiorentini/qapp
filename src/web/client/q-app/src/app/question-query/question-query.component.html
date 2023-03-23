@@ -7,6 +7,7 @@
       type="checkbox"
       id="flxNonProvate"
       checked
+      (change)="onChange()"
     />
     <label class="form-check-label" for="flxNonProvate">Mai risposto</label>
   </div>
@@ -17,6 +18,7 @@
       type="checkbox"
       id="flxRispSbagliate"
       checked
+      (change)="onChange()"
     />
     <label class="form-check-label" for="flexSwitchCheckChecked"
       >Risposte Sbagliate</label
@@ -29,6 +31,7 @@
       type="checkbox"
       id="flxRispCorrette"
       checked
+      (change)="onChange()"
     />
     <label class="form-check-label" for="flxRispCorrette"
       >Risposte correttamente</label

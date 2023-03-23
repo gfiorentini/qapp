@@ -69,6 +69,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     var a = this.service.getRisposteDate();
     console.log(a);
     this.service.sendDataReport().subscribe((data) => console.log(data));
+    //
+    this.service.requestNewQuestions();
   }
 
   shuffle(array: Risposta[]): Risposta[] {

@@ -78,19 +78,31 @@ export class QuestionService {
     return this.domandeAggiornate.asObservable();
   }
 
-  public requestNewQuestions(
-    parNonRisp: boolean = true,
-    parSbagliate: boolean = true,
-    parCorrette: boolean = true
+  parNonRisp = true;
+  parSbagliate = true;
+  parCorrette = true;
+
+  public SetupQueryState(
+    parNonRisp: boolean | undefined,
+    parSbagliate: boolean | undefined,
+    parCorrette: boolean | undefined
   ) {
+    if (parCorrette !== undefined) this.parCorrette = parCorrette!;
+
+    if (this.parSbagliate !== undefined) this.parSbagliate = parSbagliate!;
+
+    if (this.parNonRisp !== undefined) this.parNonRisp = parNonRisp!;
+  }
+
+  public requestNewQuestions() {
     // : Observable<QuestionItems> {
     //
     this.map_result.clear();
 
     let queryParams = new HttpParams();
-    queryParams = queryParams.append('parNonRisp', parNonRisp);
-    queryParams = queryParams.append('parSbagliate', parSbagliate);
-    queryParams = queryParams.append('parCorrette', parCorrette);
+    queryParams = queryParams.append('parNonRisp', this.parNonRisp);
+    queryParams = queryParams.append('parSbagliate', this.parSbagliate);
+    queryParams = queryParams.append('parCorrette', this.parCorrette);
     //
     // return this.http.get<Question[]>("./assets/domande.json");
     // return this.http.get<Question[]>('http://10.6.5.195:3000/sampleDomande');

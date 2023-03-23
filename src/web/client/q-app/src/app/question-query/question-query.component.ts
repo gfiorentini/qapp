@@ -68,7 +68,20 @@ export class QuestionQueryComponent implements OnInit, OnDestroy {
     console.log(this.refSbagliate?.nativeElement.checked);
     console.log(this.refNonRisp?.nativeElement.checked);
 
-    this.service.requestNewQuestions(
+    this.service
+      .requestNewQuestions
+      /* this.refNonRisp?.nativeElement.checked,
+      this.refSbagliate?.nativeElement.checked,
+      this.refCorrette?.nativeElement.checked  */
+      ();
+  }
+
+  onChange() {
+    console.log('onChange ---------------------------------');
+    console.log(this.refCorrette?.nativeElement.checked);
+    console.log(this.refSbagliate?.nativeElement.checked);
+    console.log(this.refNonRisp?.nativeElement.checked);
+    this.service.SetupQueryState(
       this.refNonRisp?.nativeElement.checked,
       this.refSbagliate?.nativeElement.checked,
       this.refCorrette?.nativeElement.checked
